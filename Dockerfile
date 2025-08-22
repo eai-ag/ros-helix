@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-xacro \
     ros-${ROS_DISTRO}-ros2-controllers \
     ros-${ROS_DISTRO}-spacenav \
+    ros-${ROS_DISTRO}-foxglove-bridge \
+    ros-${ROS_DISTRO}-rosbridge-suite \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ros_entrypoint.sh .
