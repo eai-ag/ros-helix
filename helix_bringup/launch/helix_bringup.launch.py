@@ -6,8 +6,6 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
-# from launch.actions import RegisterEventHandler
-# from launch.event_handlers import OnProcessExit
 
 def generate_launch_description():
 
@@ -116,16 +114,41 @@ def generate_launch_description():
         output="screen",
     )
 
-    ld.add_action(robot_state_publisher)
-    ld.add_action(joint_state_publisher_node)
-    ld.add_action(helix_ros2_control_node)
-    ld.add_action(motor_head_joint_state_broadcaster_node)
-    ld.add_action(motor_head_joint_position_controller_node)
-    ld.add_action(motor_head_joint_effort_controller_node)
-    ld.add_action(tendon_transmission_node)
-    ld.add_action(gripper_joint_state_broadcaster_node)
-    ld.add_action(gripper_joint_position_controller_node)
-    ld.add_action(helix_gripper_node)
-    ld.add_action(spacenav_node)
+    foxglove_bridge = Node(
+        package="foxglove_bridge",
+        executable="foxglove_bridge",
+        name="foxglove_bridge",
+        output="screen",
+    )
+
+    rosbridge_websocket = Node(
+        package="rosbridge_websocket",
+        executable="rosbridge_websocket",
+        name="rosbridge_websocket",
+        output="screen",
+    ) 
+
+    rosapi_node = Node(
+        package="rosapi",
+        executable="rosapi_node",
+        name="rosapi_node",
+        output="screen",
+    ) 
+
+
+    # ld.add_action(robot_state_publisher)
+    # ld.add_action(joint_state_publisher_node)
+    # ld.add_action(helix_ros2_control_node)
+    # ld.add_action(motor_head_joint_state_broadcaster_node)
+    # ld.add_action(motor_head_joint_position_controller_node)
+    # ld.add_action(motor_head_joint_effort_controller_node)
+    # ld.add_action(tendon_transmission_node)
+    # ld.add_action(gripper_joint_state_broadcaster_node)
+    # ld.add_action(gripper_joint_position_controller_node)
+    # ld.add_action(helix_gripper_node)
+    # ld.add_action(spacenav_node)
+    ld.add_action(foxglove_bridge)
+    ld.add_action(rosbridge_websocket)
+    ld.add_action(rosapi_node)
 
     return ld

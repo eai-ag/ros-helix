@@ -1,6 +1,6 @@
 services:
   ros-helix:
-    image: ghcr.io/helix-robotics-ag/ros-helix:iron
+    image: ghcr.io/eai-ag/ros-helix:iron
     build:
       context: .
       dockerfile: Dockerfile
